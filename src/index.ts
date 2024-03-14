@@ -6,14 +6,12 @@ import cors from "cors";
 const app = express();
 const httpServer = createServer(app);
 const corsOptions = {
-	origin: "*",
+	origin: "http://localhost:5173",
 };
 app.use(cors(corsOptions));
 const io = new Server(httpServer, {
 	/* options */ cors: {
-		origin: "*",
-		methods: ["GET", "POST"],
-		credentials: true,
+		origin: "http://localhost:5173",
 	},
 });
 
@@ -26,5 +24,5 @@ io.on("connection", (socket) => {
 httpServer.listen(3000);
 
 app.get("/", (_req, res) => {
-	res.send("The server is running!");
+	res.status(200).json({ message: "Connected to server" });
 });

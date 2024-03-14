@@ -19,4 +19,7 @@ io.on("connection", function (socket) {
     });
 });
 httpServer.listen(3000);
+app.get("/", function (_req, res) {
+    res.status(200).json({ message: "Connected to server" });
+});
 //# sourceMappingURL=index.js.map

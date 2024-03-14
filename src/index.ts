@@ -6,12 +6,12 @@ import cors from "cors";
 const app = express();
 const httpServer = createServer(app);
 const corsOptions = {
-	origin: "https://socket-cllient.vercel.app/",
+	origin: ["http://localhost:5173", "https://socket-cllient.vercel.app"],
 };
 app.use(cors(corsOptions));
 const io = new Server(httpServer, {
 	/* options */ cors: {
-		origin: "https://socket-cllient.vercel.app/",
+		origin: ["http://localhost:5173", "https://socket-cllient.vercel.app"],
 	},
 });
 

@@ -6,12 +6,13 @@ import cors from "cors";
 const app = express();
 const httpServer = createServer(app);
 const corsOptions = {
-	origin: ["http://localhost:5173", "https://socket-cllient.vercel.app"],
+	origin: "*",
 };
 app.use(cors(corsOptions));
 const io = new Server(httpServer, {
-	/* options */ cors: {
-		origin: ["http://localhost:5173", "https://socket-cllient.vercel.app"],
+	/* options */
+	cors: {
+		origin: "",
 	},
 });
 
@@ -22,3 +23,7 @@ io.on("connection", (socket) => {
 });
 
 httpServer.listen(3000);
+
+app.get("/", (_req, res) => {
+	res.send("The server is running!");
+});

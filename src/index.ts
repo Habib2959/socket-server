@@ -16,6 +16,10 @@ const io = new Server(httpServer, {
 		allowedHeaders: ["my-custom-header"],
 		credentials: true,
 	},
+	allowRequest: (req, callback) => {
+		const noOriginHeader = req.headers.origin === undefined;
+		callback(null, noOriginHeader); // only allow requests without 'origin' header
+	},
 });
 
 io.on("connection", (socket) => {

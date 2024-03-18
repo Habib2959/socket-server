@@ -6,13 +6,20 @@ import cors from "cors";
 const app = express();
 const httpServer = createServer(app);
 const corsOptions = {
-	origin: "*",
+	origin: ["http://localhost:5173", "https://socket-cllient.vercel.app"],
 };
 app.use(cors(corsOptions));
 const io = new Server(httpServer, {
 	/* options */ cors: {
-		origin: "*",
+		origin: ["http://localhost:5173", "https://socket-cllient.vercel.app"],
 	},
+});
+
+io.engine.on("headers", (headers, req) => {
+	headers["Access-Control-Allow-Origin"] = "http://localhost:5173";
+	headers["Access-Control-Allow-Headers"] =
+		"origin, x-requested-with, content-type";
+	headers["Access-Control-Allow-Methodsn"] = "PUT, GET, POST, DELETE, OPTIONS";
 });
 
 io.on("connection", (socket) => {

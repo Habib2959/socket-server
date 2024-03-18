@@ -13,6 +13,8 @@ app.use(cors(corsOptions));
 const io = new Server(httpServer, {
 	cors: {
 		origin: corsOptions.origin,
+		allowedHeaders: ["my-custom-header"],
+		credentials: true,
 	},
 });
 

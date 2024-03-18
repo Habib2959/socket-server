@@ -16,7 +16,7 @@ const io = new Server(httpServer, {
 });
 
 io.engine.on("headers", (headers, req) => {
-	headers["Access-Control-Allow-Origin"] = "http://localhost:5173";
+	headers["Access-Control-Allow-Origin"] = "https://socket-cllient.vercel.app";
 	headers["Access-Control-Allow-Headers"] =
 		"origin, x-requested-with, content-type";
 	headers["Access-Control-Allow-Methodsn"] = "PUT, GET, POST, DELETE, OPTIONS";
